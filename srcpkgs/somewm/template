@@ -5,12 +5,12 @@ revision=1
 build_style=meson
 configure_args="-Dwerror=false --sysconfdir=/etc"
 hostmakedepends="pkg-config meson ninja wayland-devel"
-makedepends="wlroots-devel LuaJIT-devel cairo-devel pango-devel
+makedepends="wlroots0.19-devel LuaJIT-devel cairo-devel pango-devel
  gdk-pixbuf-devel libinput-devel libxkbcommon-devel
  xcb-util-devel dbus-devel libxcb-devel xcb-util-wm-devel
  pixman-devel startup-notification-devel wayland-protocols libdrm-devel
  libseat-devel libliftoff-devel libdisplay-info-devel eudev-libudev-devel
- xcb-util-renderutil-devel xcb-util-image-devel xcb-util-keysyms-devel"
+ xcb-util-renderutil-devel xcb-util-image-devel xcb-util-keysyms-devel lua51-lgi"
 depends="lua51-lgi xorg-server-xwayland"
 short_desc="AwesomeWM for Wayland (wlroots-based compositor)"
 maintainer="Luis F. Rosales <Lfssjquantum@murena.io>"
