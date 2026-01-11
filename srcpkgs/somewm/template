@@ -1,30 +1,22 @@
 # Template file for 'somewm'
 pkgname=somewm
-version=0.4.0
+version=0.5.0
 revision=1
-build_style=gnu-makefile
-make_install_args="PREFIX=/usr"
-hostmakedepends="pkg-config wayland-devel lua51-lgi"
-makedepends="wlroots0.19-devel LuaJIT-devel cairo-devel pango-devel
+build_style=meson
+configure_args="-Dwerror=false --sysconfdir=/etc"
+hostmakedepends="pkg-config meson ninja wayland-devel"
+makedepends="wlroots-devel LuaJIT-devel cairo-devel pango-devel
  gdk-pixbuf-devel libinput-devel libxkbcommon-devel
  xcb-util-devel dbus-devel libxcb-devel xcb-util-wm-devel
- pixman-devel startup-notification-devel wayland-protocols"
+ pixman-devel startup-notification-devel wayland-protocols libdrm-devel
+ libseat-devel libliftoff-devel libdisplay-info-devel eudev-libudev-devel
+ xcb-util-renderutil-devel xcb-util-image-devel xcb-util-keysyms-devel"
 depends="lua51-lgi xorg-server-xwayland"
 short_desc="AwesomeWM for Wayland (wlroots-based compositor)"
 maintainer="Luis F. Rosales <Lfssjquantum@murena.io>"
 license="GPL-3.0-or-later"
 homepage="https://github.com/trip-zip/somewm"
 distfiles="https://github.com/trip-zip/somewm/archive/refs/tags/${version}.tar.gz"
-checksum=c5740d50397d715e43c968d9bb6a356fe33771227b829851700db8d3a7a102b1
+checksum=8452073e4d4a4e6308a231c3cca72d6e1c3791866dd8897e3c01df36caa7d672
 
-pre_build() {
-	export CFLAGS="$CFLAGS $(pkg-config --cflags luajit) -Wno-error"
-	export LDFLAGS="$LDFLAGS $(pkg-config --libs luajit)"
-}
-post_install() {
-	if [ -d "${DESTDIR}/usr/etc" ]; then
-		vmkdir etc
-		mv ${DESTDIR}/usr/etc/* ${DESTDIR}/etc/
-		rm -rf ${DESTDIR}/usr/etc
-	fi
-}
+disable_lto=yes
